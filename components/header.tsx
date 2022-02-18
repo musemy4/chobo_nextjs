@@ -11,11 +11,11 @@ export default function NavBar() {
                 <Link href="/">
                     <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
                 </Link>
-                <Link href="/">
+                <Link href="/about">
                     <a className={router.pathname === '/about' ? 'active' : ''}>About</a>
                 </Link>
-                <Link href="/">
-                    <a className={router.pathname === '/live on' ? 'active' : ''}>Live on</a>
+                <Link href="/profile">
+                    <a className={router.pathname === '/profile' ? 'active' : ''}>Profile</a>
                 </Link>
                 <Link href="/login">
                     <a className={router.pathname === '/login' ? 'active' : ''}>Login</a>

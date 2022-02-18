@@ -1,10 +1,9 @@
-import Head from "next/head"; // 작은 패키지들을 쓸수있다. 다운로드 받지않아도 
-import Seo from "../components/seo";
+import { Layout } from '../components/layout'
 
-export default function Home() {
+export default function Index() {
     return (
+        <Layout title="Home | Next.js + tailwind + keycloak Example">
         <div className="bg-gray-50">
-            <Seo title={'home'} />
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
                 <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                     <span className="block">Ready to dive in?</span>
@@ -30,5 +29,6 @@ export default function Home() {
                 </div>
             </div>
         </div>
+        </Layout>
     )
 }
