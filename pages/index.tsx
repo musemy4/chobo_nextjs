@@ -1,6 +1,34 @@
+import Link from "next/link";
+
 import { Layout } from '../components/layout'
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance, KeycloakTokenParsed } from 'keycloak-js'
+
+type ParsedToken = KeycloakTokenParsed & {
+    email?: string
+  
+    preferred_username?: string
+  
+    given_name?: string
+  
+    family_name?: string
+  }
 
 export default function Index() {
+    const { keycloak } = useKeycloak<KeycloakInstance>()
+    const parsedToken: ParsedToken | undefined = keycloak?.tokenParsed
+
+    const loggedinState = keycloak?.authenticated ? (
+        <span className="text-success">logged in</span>
+    ) : (
+        <span className="text-danger">NOT logged in</span>
+    )
+
+    const welcomeMessage =
+        keycloak?.authenticated || (keycloak && parsedToken)
+        ? `Welcome back ${parsedToken?.preferred_username ?? ''}!`
+        : 'Welcome visitor. Please login to continue.'
+
     return (
         <Layout title="Home | Next.js + tailwind + keycloak Example">
         <div className="bg-gray-50">
@@ -9,6 +37,9 @@ export default function Index() {
                     <span className="block">Ready to dive in?</span>
                     <span className="block text-indigo-600">Start your free trial today.</span>
                 </h2>
+                <br />
+                <p>You are: {loggedinState}</p>
+                <p>{welcomeMessage}</p>   
                 <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                     <div className="inline-flex rounded-md shadow">
                         <a
@@ -19,12 +50,14 @@ export default function Index() {
                         </a>
                     </div>
                     <div className="ml-3 inline-flex rounded-md shadow">
-                        <a
-                        href="#"
-                        className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
-                        >
-                        Learn more
-                        </a>
+                        <Link href="/about">
+                            <a
+                            href="#"
+                            className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
+                            >
+                            Learn more
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </div>
