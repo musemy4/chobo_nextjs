@@ -11,9 +11,9 @@ import { SSRKeycloakProvider, SSRCookies } from '@react-keycloak/ssr'
 
 
 const keycloakCfg = {
-    url: 'http://ca-172-16-36-180.vurix.kr/auth',
-    realm: 'vurix-dms',
-    clientId: 'vurix-dms-platform',
+    url: '*',
+    realm: '*',
+    clientId: '*',
 }
 
 
