@@ -1,8 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance } from 'keycloak-js'
+
 export default function NavBar() {
     const router = useRouter();
+    const { keycloak } = useKeycloak<KeycloakInstance>()
 
     return (
         <nav>
@@ -14,12 +19,67 @@ export default function NavBar() {
                 <Link href="/about">
                     <a className={router.pathname === '/about' ? 'active' : ''}>About</a>
                 </Link>
-                <Link href="/profile">
+                {/* <Link href="/profile">
                     <a className={router.pathname === '/profile' ? 'active' : ''}>Profile</a>
-                </Link>
-                <Link href="/login">
+                </Link> */}
+                {/* <Link href="/login">
                     <a className={router.pathname === '/login' ? 'active' : ''}>Login</a>
-                </Link>
+                </Link> */}
+                {keycloak?.authenticated ? (
+                    <>
+                    <button
+                        type="button"
+                        className="mx-2 btn btn-outline-primary"
+                        onClick={() => {
+                        if (keycloak) {
+                            window.location.href = keycloak.createAccountUrl()
+                        }
+                        }}
+                    >
+                        My Account
+                    </button>
+
+                    <button
+                        type="button"
+                        className="mx-2 btn btn-outline-danger"
+                        onClick={() => {
+                        if (keycloak) {
+                            window.location.href = keycloak.createLogoutUrl()
+                        }
+                        }}
+                    >
+                        Logout
+                    </button>
+                    </>
+                ) : (
+                    <>
+                    <button
+                        type="button"
+                        className="mx-2 btn btn-outline-primary"
+                        onClick={() => {
+                        if (keycloak) {
+                            window.location.href = keycloak.createRegisterUrl()
+                        }
+                        }}
+                    >
+                        Signup
+                    </button>
+
+                    <button
+                        type="button"
+                        className="mx-2 btn btn-outline-success"
+                        onClick={() => {
+                        if (keycloak) {
+                            window.location.href = keycloak.createLoginUrl()
+                        }
+                        }}
+                    >
+                        Login
+                    </button>
+                    </>
+                )}
+
+
             </div>
             <style jsx>{`
                 nav {
@@ -28,10 +88,10 @@ export default function NavBar() {
                     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
                     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
                 }
-                a + a {
+                button+button, a + a {
                     margin-left:10px;
                 }
-                nav a {
+                nav a, button {
                     font-weight: 600;
                     font-size: 18px;
                 }
