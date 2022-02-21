@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { navLinks } from '../utils/navLink';
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -13,18 +14,23 @@ export default function NavBar() {
         <nav>
             <Image src="/vercel.svg" className="float-left" height={50} width={70} alt="logo" />
             <div className="float-right">
-                <Link href="/">
+                {
+                    navLinks.map((link, index) => {
+                        return(
+                            <Link key={index} href={link.path}>
+                                <a> {link.name} </a>
+                            </Link>
+                        );
+                    })
+                }
+
+
+                {/* <Link href="/">
                     <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
                 </Link>
                 <Link href="/about">
                     <a className={router.pathname === '/about' ? 'active' : ''}>About</a>
                 </Link>
-                {/* <Link href="/profile">
-                    <a className={router.pathname === '/profile' ? 'active' : ''}>Profile</a>
-                </Link> */}
-                {/* <Link href="/login">
-                    <a className={router.pathname === '/login' ? 'active' : ''}>Login</a>
-                </Link> */}
                 {keycloak?.authenticated ? (
                     <>
                     <button
@@ -77,7 +83,7 @@ export default function NavBar() {
                         Login
                     </button>
                     </>
-                )}
+                )} */}
 
 
             </div>
