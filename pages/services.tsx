@@ -10,7 +10,6 @@ export default function Services() {
             const { results } = await( 
                 await fetch('/api/movies')
             ).json();
-            console.log(results);
             setMovies(results);
         })();
     }, []);
