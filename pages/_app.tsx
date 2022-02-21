@@ -24,14 +24,14 @@ interface InitialProps {
 // https://www.npmjs.com/package/@react-keycloak/nextjs
 
 function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
-    return (
-        <SSRKeycloakProvider
-        keycloakConfig={keycloakCfg}
-        persistor={SSRCookies(cookies)}>
-            <Component {...pageProps} />
-        </SSRKeycloakProvider>   
-        )
-    
+    // return (
+    //     <SSRKeycloakProvider
+    //     keycloakConfig={keycloakCfg}
+    //     persistor={SSRCookies(cookies)}>
+    //         <Component {...pageProps} />
+    //     </SSRKeycloakProvider>   
+    //     )
+    return <Component {...pageProps} />;
 }
 
 function parseCookies(req?: IncomingMessage) {
