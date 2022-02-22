@@ -5,7 +5,6 @@ import Link from "next/link";
 
 // component
 import { Layout } from '../../components/layout'
-import { LeftMenu } from '../../components/left-menu/left-menu'
 import { LeftMenuItem } from '../../components/left-menu/left-menu-item'
 
 //tmp data
@@ -34,22 +33,13 @@ export default function Blog() {
 
     return (
         <Layout title="Blog | Next.js + tailwind + keycloak Example">
-            <LeftMenu>
             selection now::: {selection}
             <br />
               {state?.menus.map(item => {
-                return (
-                    <div key={item.name}>
-                        <Link href={item.path}>
-                            {item.name}
-                        </Link> 
-                    </div>
-                );
-                // return <LeftMenuItem key={item.path} to={item.path} caption={item.name}
-                //                      active={selection}
-                //                      icon={item.icon}/>
+                return <LeftMenuItem key={item.path} to={item.path} caption={item.name}
+                                     active={selection}
+                                     icon={item.icon}/>
               })}
-            </LeftMenu>
         </Layout>
 
 
