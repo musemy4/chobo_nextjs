@@ -28,7 +28,7 @@ export default function Blog() {
     });
 
     useEffect(()=> {
-        console.log('selection 변경');
+        console.log('selection 변경ㅁㅁ');
         setState({...state, selection: selection})
     }, [selection, state])
 
