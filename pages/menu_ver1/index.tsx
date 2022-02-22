@@ -1,0 +1,30 @@
+// react, nextjs
+import { useState } from 'react';
+import { useRouter } from "next/router";
+
+// component
+import { Layout } from '../../components/layout'
+
+//tmp data
+import { menuVer1Data } from '../../global/navLink';
+
+// interface
+import { ILeftMenuStates } from "../../components/left-menu/left-menu-interface";
+import LeftMenu from '../../components/left-menu/left-menu';
+
+export default function MenuVer1() {
+    const selection = useRouter().pathname;
+    const [state, setState] = useState<ILeftMenuStates>({
+        menus: menuVer1Data,
+        selection: selection
+    });
+
+    return (
+        <Layout title="Blog | Next.js + tailwind + keycloak Example">
+            <LeftMenu menus={state.menus} selection={state.selection}/>
+            <br />
+        </Layout>
+
+
+    )
+}

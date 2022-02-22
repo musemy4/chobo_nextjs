@@ -11,8 +11,12 @@ export const navLinks = [
       path: "/services",
     },
     {
-      name: "Blog",
-      path: "/blog",
+      name: "MenuV1",
+      path: "/menu_ver1",
+    },
+    {
+      name: "MenuV2",
+      path: "/menu_ver2",
     },
     // {
     //   name: "Contact Us",
@@ -21,20 +25,38 @@ export const navLinks = [
   ];
 
 
-  export const menuBlog = [
+  export const menuVer1Data = [
     {
       name: '소메뉴A',
-      path: '/blog/menuA',
+      path: '/menu_ver1/menuA',
       icon: '',
     },
     {
       name: '소메뉴B',
-      path: '/blog/menuB',
+      path: '/menu_ver1/menuB',
       icon: '',
     },
     {
       name: '소메뉴C',
-      path: '/blog/menuC',
+      path: '/menu_ver1/menuC',
+      icon: '',
+    },
+  ];
+
+  export const menuVer2Data = [
+    {
+      name: '소메뉴A',
+      path: '/menu_ver2',
+      icon: '',
+    },
+    {
+      name: '소메뉴B',
+      path: '/menu_ver2',
+      icon: '',
+    },
+    {
+      name: '소메뉴C',
+      path: '/menu_ver2',
       icon: '',
     },
   ];
