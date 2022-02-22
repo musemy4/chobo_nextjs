@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 
 // component
-import { Layout } from '../components/layout'
-import { LeftMenu } from '../components/left-menu/left-menu'
-import { LeftMenuItem } from '../components/left-menu/left-menu-item'
+import { Layout } from '../../components/layout'
+import { LeftMenu } from '../../components/left-menu/left-menu'
+import { LeftMenuItem } from '../../components/left-menu/left-menu-item'
 
 //tmp data
-import { menuBlog } from '../global/navLink';
+import { menuBlog } from '../../global/navLink';
 
 interface MenuDisplayItem {
     name: string;
