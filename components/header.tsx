@@ -16,7 +16,7 @@ export default function NavBar() {
 
 
     return (
-        <nav>
+        <nav className="flexx">
             <Image onClick={moveHome} src="/vercel.svg" className="float-left" height={50} width={70} alt="logo" />
             <div className="float-right">
                 {

@@ -18,16 +18,11 @@ export default function Blog() {
     const selection = useRouter().pathname;
     const [state, setState] = useState<ILeftMenuStates>({
         menus: menuBlog,
-        selection: ''
+        selection: selection
     });
-
-    useEffect(()=> {
-        setState({...state, selection: selection})
-    }, [selection, state])
 
     return (
         <Layout title="Blog | Next.js + tailwind + keycloak Example">
-            selection now::: {selection}
             <LeftMenu menus={state.menus} selection={state.selection}/>
             <br />
         </Layout>

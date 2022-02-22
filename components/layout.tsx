@@ -8,14 +8,14 @@ type Props = {
 
 export const Layout: React.FC<Props> = ({ children, title = 'Nextjs+tailwind+keycloak' }) => {
     return (
-        <>
+        <div className="h-screen">
         <Head>
             <title>{title}</title>
             <meta charSet="utf-8" />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <NavBar />
-        <div>{children}</div>
-        </>
+        <div className="flex">{children}</div>
+        </div>
     )
 }
