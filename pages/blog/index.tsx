@@ -10,19 +10,13 @@ import { LeftMenuItem } from '../../components/left-menu/left-menu-item'
 //tmp data
 import { menuBlog } from '../../global/navLink';
 
-interface MenuDisplayItem {
-    name: string;
-    path: string;
-    icon: string;
-}
-interface MainFrameState {
-    menus: MenuDisplayItem[];
-    selection: string;
-}
+// interface
+import { ILeftMenuStates } from "../../components/left-menu/left-menu-interface";
+import LeftMenu from '../../components/left-menu/left-menu';
 
 export default function Blog() {
     const selection = useRouter().pathname;
-    const [state, setState] = useState<MainFrameState>({
+    const [state, setState] = useState<ILeftMenuStates>({
         menus: menuBlog,
         selection: ''
     });
@@ -34,12 +28,8 @@ export default function Blog() {
     return (
         <Layout title="Blog | Next.js + tailwind + keycloak Example">
             selection now::: {selection}
+            <LeftMenu menus={state.menus} selection={state.selection}/>
             <br />
-              {state?.menus.map(item => {
-                return <LeftMenuItem key={item.path} to={item.path} caption={item.name}
-                                     active={selection}
-                                     icon={item.icon}/>
-              })}
         </Layout>
 
 
