@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { navLinks } from '../utils/navLink';
+import { navLinks } from '../global/navLink';
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
@@ -10,9 +10,14 @@ export default function NavBar() {
     const router = useRouter();
     const { keycloak } = useKeycloak<KeycloakInstance>()
 
+    const moveHome = () => {
+        Router.push('/')
+    }
+
+
     return (
         <nav>
-            <Image src="/vercel.svg" className="float-left" height={50} width={70} alt="logo" />
+            <Image onClick={moveHome} src="/vercel.svg" className="float-left" height={50} width={70} alt="logo" />
             <div className="float-right">
                 {
                     navLinks.map((link, index) => {
