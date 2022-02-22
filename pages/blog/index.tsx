@@ -1,6 +1,7 @@
 // react, nextjs
 import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 // component
 import { Layout } from '../../components/layout'
@@ -28,7 +29,6 @@ export default function Blog() {
     });
 
     useEffect(()=> {
-        console.log('selection 변경ㅁㅁ');
         setState({...state, selection: selection})
     }, [selection, state])
 
@@ -38,7 +38,13 @@ export default function Blog() {
             selection now::: {selection}
             <br />
               {state?.menus.map(item => {
-                  return <div key={item.name}> {item.name} </div>;
+                return (
+                    <div key={item.name}>
+                        <Link href={item.path}>
+                            {item.name}
+                        </Link> 
+                    </div>
+                );
                 // return <LeftMenuItem key={item.path} to={item.path} caption={item.name}
                 //                      active={selection}
                 //                      icon={item.icon}/>

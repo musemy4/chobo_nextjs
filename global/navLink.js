@@ -24,17 +24,17 @@ export const navLinks = [
   export const menuBlog = [
     {
       name: '소메뉴A',
-      path: '/menuA',
+      path: '/blog/menuA',
       icon: '',
     },
     {
       name: '소메뉴B',
-      path: '/menuB',
+      path: '/blog/menuB',
       icon: '',
     },
     {
       name: '소메뉴C',
-      path: '/menuC',
+      path: '/blog/menuC',
       icon: '',
     },
   ];
