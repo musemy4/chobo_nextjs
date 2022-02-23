@@ -15,7 +15,7 @@ export const Layout: React.FC<Props> = ({ children, title = 'Nextjs+tailwind+key
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <NavBar />
-        <div className="flex">{children}</div>
+        <div>{children}</div>
         </div>
     )
 }
