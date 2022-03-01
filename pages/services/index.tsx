@@ -1,6 +1,7 @@
 // react, nextjs
-import { useState } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { useRouter } from 'next/router';
+import Link from "next/link";
 // component
 import { Layout } from '../../components/layout'
 
@@ -18,8 +19,16 @@ interface IMovieProps {
 
 
 export default function Services({results}: InferGetServerSidePropsType<GetServerSideProps>) {
-    const [movies, setMovies] = useState<any[]>([]);
-
+    const router = useRouter();
+    const onClick = (id: number, title: string) => {
+        // router.push(`/services/${id}`); // navigarting 2
+        router.push({
+            pathname: `/services/${id}`, // url을 객체로 보낼수도 있다
+            query: {
+                title
+            }
+        }, `/services/${id}`); // 브라우저에 보이는 모습 url masking
+    }
     // useEffect(()=> {
     //     (async () => {
     //         const { results } = await( 
@@ -34,9 +43,15 @@ export default function Services({results}: InferGetServerSidePropsType<GetServe
             <p>서비스페이지</p>
             {/* {!movies && <h4>Loading...</h4>} */}
             {results?.map((movie: IMovieProps) => (
-                <div key={movie.id}>
-                    <h4>{movie.original_title}</h4>
-                </div>
+               
+                        <div onClick={()=>onClick(movie.id, movie.original_title)} key={movie.id}>
+                            <h4>
+                            <Link href={`/services/${movie.id}`}>
+                                <a>{movie.original_title}</a>
+                            </Link>
+                            </h4>
+                        </div>
+                
             ))}
         </Layout>
     )
@@ -49,6 +64,7 @@ export async function getServerSideProps({}: GetServerSideProps) {
     // client는 브라우저에 url이 있다.
     const { results } = await(await fetch('http://localhost:3000/api/movies')).json();
     return {
+        // 반드시 props안에 객체로 return 해줄것
         props: {
             results
         }
