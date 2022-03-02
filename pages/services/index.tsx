@@ -22,12 +22,15 @@ export default function Services({results}: InferGetServerSidePropsType<GetServe
     const router = useRouter();
     const onClick = (id: number, title: string) => {
         // router.push(`/services/${id}`); // navigarting 2
-        router.push({
-            pathname: `/services/${id}`, // url을 객체로 보낼수도 있다
-            query: {
-                title
-            }
-        }, `/services/${id}`); // 브라우저에 보이는 모습 url masking
+        // router.push({
+        //     pathname: `/services/${id}`, // url을 객체로 보낼수도 있다
+        //     query: {
+        //         title
+        //     }
+        // }, `/services/${id}`); // 브라우저에 보이는 모습 url masking
+    
+        router.push(`/services/${title}/${id}`);
+    
     }
     // useEffect(()=> {
     //     (async () => {
@@ -46,7 +49,7 @@ export default function Services({results}: InferGetServerSidePropsType<GetServe
                
                         <div onClick={()=>onClick(movie.id, movie.original_title)} key={movie.id}>
                             <h4>
-                            <Link href={`/services/${movie.id}`}>
+                            <Link href={`/services/${movie.original_title}/${movie.id}`}>
                                 <a>{movie.original_title}</a>
                             </Link>
                             </h4>
@@ -72,4 +75,4 @@ export async function getServerSideProps({}: GetServerSideProps) {
 }
 
 // loading을 먼저보여주고 데이터를 가져와서 뿌릴것이냐 => static shell 데이터를 나웆에 불러옴
-// 데이터를 서버에서 다 가져와서 한꺼번에 보여줌 SSR NextJs
+// 데이터를 서버에서 다 가져와서 한꺼번에 보여줌 SSR NextJs 
