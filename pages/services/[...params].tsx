@@ -5,16 +5,32 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 // component
 import { Layout } from '../../components/layout'
 
-export default function Detail() {
+export default function Detail({params}: any) {
     const router = useRouter();
-    console.log(router);
+    // const title = router.query.params?router.query.params[0]:'no data...';
+    // const id = router.query.params?router.query.params[1]:'no data...';
+    // const [title, id] = router.query.params || [];
+
+    const [title, id] = params;
+
+
 
     return (
-        <Layout title="Services | Next.js + tailwind + keycloak Example">
-            <div>{router.query.title || 'loading... '}</div>
+        <Layout title={ `${title}| Next.js + tailwind + keycloak Example`}>
+            <div>{title} :: {id}</div>
         </Layout>
     );
 }
+
+export function getServerSideProps({params:{params}}: any) {
+    console.log(params);
+    return {
+        props: {
+            params
+        }
+    }
+}
+
 
 // export async function getServerSideProps({}: GetServerSideProps) {
     // client가 아닌 server에서 작동하기때문에 absolute url을 사용해야함
